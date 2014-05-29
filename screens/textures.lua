@@ -9,7 +9,8 @@ function on_touch(x, y)
 end
 
 --[[
-Four possible ways to call draw on a texture:
+Five possible ways to call draw on a texture:
+	t:draw() 
 	t:draw(dst_x, dst_y) 
 	t:draw(dst_x, dst_y, dst_w, dst_h) 
 	t:draw(src_x, src_y, src_w, src_h, dst_x, dst_y) 

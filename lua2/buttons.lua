@@ -4,7 +4,6 @@ _ENV = {
 }
 
 textures    = require('lua2.textures')
---button_font = require('lua2.fonts').get('button')
 
 button_mt = {}
 
@@ -32,7 +31,7 @@ local function create_from_texture(t, a1, a2, a3, a4, a5, a6, a7, a8)
 	elseif a6 then o.x = a5; o.y = a6; o.w = t.w; o.h = t.h
 	elseif a4 then o.x = a1; o.y = a2; o.w = a3; o.h = a4
 	elseif a2 then o.x = a1; o.y = a2; o.w = t.w; o.h = t.h
-	else           o.x =  0; o.y =  0; o.w = t.w; o.h = t.h
+	else           o.x =  0; o.y =  0; o.w = app_width; o.h = app_height
 	end
 	setmetatable(o, button_mt)
 	return o
