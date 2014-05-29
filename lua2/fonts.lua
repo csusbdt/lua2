@@ -12,8 +12,8 @@ function font_mt:__gc()
 	fonts[self.k] = nil
 end
 
-function font_mt:text(t)
-	return textures.text(self.ud, t)
+function font_mt:text(t, r, g, b, a)
+	return textures.text(self.ud, t, r or 255, g or 255, b or 255, a or 255)
 end
 
 local function get(filename, size)

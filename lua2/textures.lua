@@ -30,9 +30,9 @@ local function image(filename)
 	return o
 end
 
-local function text(font, text)
+local function text(font, text, r, g, b, a)
 	local o = {}
-	o.ud, o.w, o.h = texture_from_font(font, text)
+	o.ud, o.w, o.h = texture_from_font(font, text, r, g, b, a)
 	setmetatable(o, texture_mt)
 	return o
 end
