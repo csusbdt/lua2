@@ -16,7 +16,7 @@ function font_mt:text(t, r, g, b, a)
 	return textures.text(self.ud, t, r or 255, g or 255, b or 255, a or 255)
 end
 
-local function get(filename, size)
+local function create(filename, size)
 	if not size then msgbox('Size missing from call to fonts.get'); return nil end
 	local k = filename .. size
 	if fonts[k] then return fonts[k] end
@@ -28,6 +28,6 @@ local function get(filename, size)
 end
 
 return {
-	get = get
+	create = create
 }
 

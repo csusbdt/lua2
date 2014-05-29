@@ -6,6 +6,13 @@ local texture_mt = {}
 texture_mt.__index = texture_mt;
 
 function texture_mt:__gc()
+	if PRINT_GC then 
+		if self.name then 
+			print('destroying texture ' .. self.name)
+		elseif self.text then 
+			print('destroying texture ' .. self.text) 
+		end
+	end
 	destroy_texture(self.ud)
 	if self.name then textures[self.name] = nil end
 end
@@ -31,7 +38,7 @@ local function image(filename)
 end
 
 local function text(font, text, r, g, b, a)
-	local o = {}
+	local o = { text = text }
 	o.ud, o.w, o.h = texture_from_font(font, text, r, g, b, a)
 	setmetatable(o, texture_mt)
 	return o
