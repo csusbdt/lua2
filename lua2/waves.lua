@@ -13,6 +13,7 @@ function loop_instance_mt:stop()
 end
 
 function loop_instance_mt:__gc()
+	if app_print_gc then print('Garbage collecting a loop instance.') end
 	if self.i and not self.stopped then stop_loop(self.i) end
 end
 
@@ -21,6 +22,7 @@ local wave_mt = {}
 wave_mt.__index = wave_mt;
 
 function wave_mt:__gc()
+	if app_print_gc then print('Garbage collecting ' .. self.filename) end
 	destroy_wave(self.w)
 	waves[self.filename] = nil
 end

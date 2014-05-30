@@ -9,7 +9,8 @@ _ENV = {
 	type = type,
 	quit = quit,
 	rawset = rawset,
-	rawget = rawget
+	rawget = rawget,
+	app_print_savefile = app_print_savefile
 }
 
 module_mt = {}
@@ -47,7 +48,7 @@ function save()
 		data = data or ''
 		data = data .. k .. '=' .. v
 	end
-	_G.print('savefile = ' .. (data or ''))
+	if app_print_savefile then _G.print('savefile = ' .. (data or '')) end
 	write_file('savefile', data)
 end
 

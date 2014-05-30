@@ -6,11 +6,11 @@ local texture_mt = {}
 texture_mt.__index = texture_mt;
 
 function texture_mt:__gc()
-	if PRINT_GC then 
+	if app_print_gc then 
 		if self.name then 
-			print('destroying texture ' .. self.name)
+			print('Garbage collecting ' .. self.name)
 		elseif self.text then 
-			print('destroying texture ' .. self.text) 
+			print('Garbage collecting ' .. self.text) 
 		end
 	end
 	destroy_texture(self.ud)

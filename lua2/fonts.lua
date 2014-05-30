@@ -8,6 +8,7 @@ local font_mt = {}
 font_mt.__index = font_mt;
 
 function font_mt:__gc()
+	if app_print_gc then print('Garbage collecting ' .. self.k) end
 	close_font(self.ud)
 	fonts[self.k] = nil
 end

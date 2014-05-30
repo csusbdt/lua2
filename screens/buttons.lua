@@ -43,3 +43,5 @@ function on_touch(x, y)
 	end
 end
 
+collectgarbage()
+

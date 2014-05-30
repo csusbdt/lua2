@@ -8,13 +8,16 @@ local bg = textures.image('bg/schoolFiller.jpg')
 local f1 = fonts.create("fonts/DroidSansMono.ttf", 24)
 local t1 = f1:text("Door sound", 0, 0, 0)
 local t2 = f1:text("Toggle music", 0, 0, 0)
+local t3 = f1:text("Test savefile.", 0, 0, 0)
 local b1 = buttons.create_from_texture(t1, 100, 100)
 local b2 = buttons.create_from_texture(t2, 100, 200)
+local b3 = buttons.create_from_texture(t3, 100, 300)
 
 function on_update()
         bg:draw()
         b1:draw()
         b2:draw()
+        b3:draw()
 end
 
 local music
@@ -29,6 +32,11 @@ function on_touch(x, y)
 		else
 			music = waves.get('music/Overworld.wav'):loop()
 		end
+	elseif b3:contains(x, y) then
+		music = nil
+		dofile('screens/savefile.lua')
 	end
 end
+
+collectgarbage()
 

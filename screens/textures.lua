@@ -25,6 +25,8 @@ function on_update()
 	t1:draw(50, 100, 100, 100, 250, 200, 75, 75)
 end
 
+collectgarbage()
+
 -- Note:
 --
 -- Backgrounds should be JPG to save space.

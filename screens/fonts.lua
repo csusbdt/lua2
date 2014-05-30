@@ -35,4 +35,5 @@ function on_update()
 	t4:draw(50, 200)
 end
 
+collectgarbage()
 
