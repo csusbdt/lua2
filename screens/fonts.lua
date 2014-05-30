@@ -19,9 +19,9 @@ local f2 = fonts.create("fonts/DroidSansMono.ttf", 18)
 --                                 note: ALPHA HAS NO EFFECT RIGHT NOW.
 --
 
-local t1 = f1:text("Hello 24 pts.", 0, 100, 100, 60)
-local t2 = f2:text("Hello 18 pts.", 0, 60, 0) -- Alpha is optional.
-local t3 = f1:text("The default color of text is white.")
+local t2 = f1:text("Hello 24 pts.", 0, 100, 100, 60)
+local t3 = f2:text("Hello 18 pts.", 0, 60, 0) -- Alpha is optional.
+local t4 = f1:text("The default color of text is white.")
 
 function on_touch(x, y)
 	dofile('screens/buttons.lua')	
@@ -32,6 +32,7 @@ function on_update()
 	t1:draw(50, 50)
 	t2:draw(50, 100)
 	t3:draw(50, 150)
+	t4:draw(50, 200)
 end
 
 

@@ -39,6 +39,6 @@ end
 
 return {
 	create_from_texture = create_from_texture ,
-	create_from_file    = create_from_file
+	create_from_rect    = create_from_rect
 }
 
