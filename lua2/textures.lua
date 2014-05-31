@@ -37,9 +37,15 @@ local function image(filename)
 	return o
 end
 
-local function text(font, text, r, g, b, a)
+local function text(font, text, color)
+	local c = {
+		r = color and color.r or 0,
+		g = color and color.g or 0,
+		b = color and color.b or 0,
+		a = color and color.a or 255
+	}
 	local o = { text = text }
-	o.ud, o.w, o.h = texture_from_font(font, text, r, g, b, a)
+	o.ud, o.w, o.h = texture_from_font(font, text, c.r, c.g, c.b, c.a)
 	setmetatable(o, texture_mt)
 	return o
 end

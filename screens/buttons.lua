@@ -2,8 +2,8 @@ local bg = textures.image('bg/schoolFiller.jpg')
 local t1 = textures.image('images/Cara.png') 
 
 local f1 = fonts.create("fonts/DroidSansMono.ttf", 24)
-local t2 = f1:text("Hello there.", 0, 100, 100, 60)
-local t3 = f1:text("Back", 0, 0, 0)
+local t2 = f1:text("Hello in some color.", {r=0, g=200, b=255})
+local t3 = f1:text("Back", app_black)
 
 --[[
 Five possible ways to create a button from a texture:

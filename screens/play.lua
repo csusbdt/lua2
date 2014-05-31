@@ -6,13 +6,13 @@ end
 
 local function create_title(text, x, y)
 	local f = fonts.create("fonts/DroidSansMono.ttf", 32)
-	local t = f:text(text, 255, 100, 100)
+	local t = f:text(text, {r=255, g=100, b=100})
 	return buttons.create_from_texture(t, x, y)
 end
 
 local function create_button(text, x, y)
 	local f = fonts.create("fonts/DroidSansMono.ttf", 22)
-	local t = f:text(text, 255, 255, 255)
+	local t = f:text(text, app_white)
 	return buttons.create_from_texture(t, x, y)
 end
 

@@ -13,8 +13,14 @@ function font_mt:__gc()
 	fonts[self.k] = nil
 end
 
-function font_mt:text(t, r, g, b, a)
-	return textures.text(self.ud, t, r or 255, g or 255, b or 255, a or 255)
+function font_mt:text(text, color)
+	local c = {
+		r = color and color.r or 0,
+		g = color and color.g or 0,
+		b = color and color.b or 0,
+		a = color and color.a or 255
+	}
+	return textures.text(self.ud, text, c)
 end
 
 local function create(filename, size)

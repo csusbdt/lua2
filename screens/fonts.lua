@@ -14,17 +14,20 @@ local f2 = fonts.create("fonts/DroidSansMono.ttf", 18)
 
 -- Create textures from fonts with the following function.
 --
--- font:text(text, r, g, b, a) 
+-- font:text(text, color) where color = { r, g, b, a } 
 --
---                                 note: ALPHA HAS NO EFFECT RIGHT NOW.
+-- Notes: 
+--     Alpha has no effect right now.
+--     The default color is black.
+--     Keys r, g, b and a are optional in color.
 --
 
-local t2 = f1:text("Hello 24 pts.", 0, 100, 100, 60)
-local t3 = f2:text("Hello 18 pts.", 0, 60, 0) -- Alpha is optional.
-local t4 = f1:text("The default color of text is white.")
+local t2 = f1:text("Hello 24 pts.", {r=0, g=100, b=100, a=60})
+local t3 = f2:text("Hello 18 pts.", app_white) -- app_white defined in init.lua
+local t4 = f1:text("The default color of text is black.")
 
 function on_touch(x, y)
-	dofile('screens/buttons.lua')	
+	dofile('screens/title.lua')	
 end
 
 function on_update()
