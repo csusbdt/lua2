@@ -1,13 +1,9 @@
-local textures = require('lua2.textures')
-local fonts    = require('lua2.fonts')
-local buttons  = require('lua2.buttons')
-
 local bg = textures.image('bg/schoolFiller.jpg')
 local t1 = textures.image('images/Cara.png') 
 
 local f1 = fonts.create("fonts/DroidSansMono.ttf", 24)
-local t2 = f1:text("Go to waves test.", 0, 100, 100, 60)
-local t3 = f1:text("test.", 0, 0, 0)
+local t2 = f1:text("Hello there.", 0, 100, 100, 60)
+local t3 = f1:text("Back", 0, 0, 0)
 
 --[[
 Five possible ways to create a button from a texture:
@@ -36,8 +32,8 @@ end
 
 function on_touch(x, y)
 	if b1:contains(x, y) then msgbox('x = ' .. x .. '  y = ' .. y) 
-	elseif b2:contains(x, y) then 
-		dofile('screens/waves.lua')
+	elseif b3:contains(x, y) then 
+		dofile('screens/title.lua')
 	elseif b4:contains(x, y) then
 		msgbox('You clicked the corner.')
 	end

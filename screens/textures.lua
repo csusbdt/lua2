@@ -1,11 +1,9 @@
-local textures = require('lua2.textures')
-
 -- Create textures from image files.
 local bg = textures.image('bg/schoolFiller.jpg')
 local t1 = textures.image('images/Cara.png') 
 
 function on_touch(x, y)
-	dofile('screens/fonts.lua')	
+	dofile('screens/title.lua')	
 end
 
 --[[
