@@ -3,7 +3,7 @@ _ENV = {
 	setmetatable = setmetatable
 }
 
-textures    = require('lua2.textures')
+textures = require('lua2.textures')
 
 button_mt = {}
 

@@ -22,7 +22,8 @@ local continue_button = create_button("Continue game"       , 50, 180)
 local restart_button  = create_button("Restart game"        , 50, 220)
 local textures_button = create_button("Textures demo"       , 50, 260)
 local buttons_button  = create_button("Buttons demo"        , 50, 300)
-local exit_button     = create_button("Exit"                , 50, 340)
+local fill_button     = create_button("Fill"                , 50, 340)
+local exit_button     = create_button("Exit"                , 50, 380)
 
 music.set('music/Overworld.wav')
 
@@ -33,6 +34,7 @@ function on_update()
 	restart_button  :draw()
 	textures_button :draw()
 	buttons_button  :draw()
+	fill_button     :draw()
 	exit_button     :draw()
 end
 
@@ -48,6 +50,8 @@ function on_touch(x, y)
 		dofile('screens/textures.lua')
 	elseif buttons_button:contains(x, y) then
 		dofile('screens/buttons.lua')
+	elseif fill_button:contains(x, y) then
+		dofile('screens/fill.lua')
 	elseif exit_button:contains(x, y) then
 		quit()
 	end
