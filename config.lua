@@ -10,3 +10,5 @@ app_print_gc = false
 -- Print contents of savefile each time it changes.
 app_print_savefile = false
 
+app_fullscreen = false
+

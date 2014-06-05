@@ -16,14 +16,19 @@ local function create_button(text, x, y)
 	return buttons.create_from_texture(t, x, y)
 end
 
+local x = 50
+local y = 100
+local dy = 40
+
 local bg              = create_background();
 local title           = create_title ("Test Program for the Lua2 Library", 120,  50)
-local continue_button = create_button("Continue game"       , 50, 180)
-local restart_button  = create_button("Restart game"        , 50, 220)
-local textures_button = create_button("Textures demo"       , 50, 260)
-local buttons_button  = create_button("Buttons demo"        , 50, 300)
-local fill_button     = create_button("Fill"                , 50, 340)
-local exit_button     = create_button("Exit"                , 50, 380)
+local continue_button = create_button("Continue game"       , x, y); y = y + dy
+local restart_button  = create_button("Restart game"        , x, y); y = y + dy
+local textures_button = create_button("Textures demo"       , x, y); y = y + dy
+local buttons_button  = create_button("Buttons demo"        , x, y); y = y + dy
+local fill_button     = create_button("Fill"                , x, y); y = y + dy
+local full_button     = create_button("Toggle fullscreen"   , x, y); y = y + dy
+local exit_button     = create_button("Exit"                , x, y); y = y + dy
 
 music.set('music/Overworld.wav')
 
@@ -35,6 +40,7 @@ function on_update()
 	textures_button :draw()
 	buttons_button  :draw()
 	fill_button     :draw()
+	full_button     :draw()
 	exit_button     :draw()
 end
 
@@ -52,6 +58,14 @@ function on_touch(x, y)
 		dofile('screens/buttons.lua')
 	elseif fill_button:contains(x, y) then
 		dofile('screens/fill.lua')
+	elseif full_button:contains(x, y) then
+		if app_fullscreen then 
+			windowed()
+			app_fullscreen = false
+		else 
+			fullscreen()
+			app_fullscreen = true 
+		end
 	elseif exit_button:contains(x, y) then
 		quit()
 	end
