@@ -1,10 +1,10 @@
-local m = {}  -- module
+local m  = {} -- module
 local bt = {} -- backing table
 local mt = {} -- the module's metatable
 
 mt.__index = bt -- look up keys in the backing table
 
-function read_backing_table()
+local function read_backing_table()
 	local data = read_file('savefile')
 	if not data then return end
 	for k, v in string.gmatch(data, "([%-_%w]+)=([%/%-_%w]+)") do
@@ -12,7 +12,7 @@ function read_backing_table()
 	end
 end
 
-function write_backing_table()
+local function write_backing_table()
 	local data
 	for k, v in pairs(bt) do
 		data = data and data .. ','
@@ -23,13 +23,19 @@ function write_backing_table()
 	write_file('savefile', data)
 end
 
+function m.clear()
+	for k,v in pairs(bt) do bt[k] = nil end
+	write_backing_table()
+end
+
 function mt.__newindex(self, k, v)
 	bt[k] = v
 	write_backing_table()
 end
 
-setmetatable(m , mt)
+setmetatable(m, mt)
 
 read_backing_table()
 
 return m
+
