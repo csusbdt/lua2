@@ -35,7 +35,7 @@ local function image(filename)
 	result, o.ud, o.w, o.h = pcall(texture_from_file, filename)
 	if not result then
 		msgbox('texture_from_file failed with ' .. filename .. '\n' .. o.ud)
-		return
+		os.exit()
 	end
 	setmetatable(o, texture_mt)
 	textures[filename] = o
