@@ -28,7 +28,12 @@ local function create(filename, size)
 	local k = filename .. size
 	if fonts[k] then return fonts[k] end
 	local o = { k = k }
-	o.ud = open_font(filename, size)
+	local result
+	result, o.ud = pcall(open_font, filename, size)
+	if not result then
+		msgbox('open_font failed with ' .. filename .. '\n' .. o.ud)
+		return
+	end
 	setmetatable(o, font_mt)
 	fonts[k] = o
 	return o
