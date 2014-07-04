@@ -1,13 +1,21 @@
-local bg = textures.image('bg/schoolFiller.jpg')
+local bg
+local cara
+local cara2
+
 
 local function image(filename, x, y)
 	return buttons.create_from_texture(textures.image(filename), x, y)
 end
 
-local cara  = image('images/Cara.png', 150, 50)
-local cara2 = image('images/Cara.png', 350, 50)
+function load_textures()
+	bg = textures.image('bg/schoolFiller.jpg')
+	cara  = image('images/Cara.png', 150, 50)
+	cara2 = image('images/Cara.png', 350, 50)
+end
 
-function _G.on_update()
+function draw()
+	set_draw_color(225, 225, 225, 255)
+	render_clear()
 	bg    : draw()
 	cara  : draw()
 	cara2 : draw()
@@ -19,10 +27,14 @@ function _G.on_update()
 	blendmode_blend()
 	set_draw_color(120, 80, 50, 100)
 	fill_rect(220, 100, 100, 100)
-
+	render()
 end
 
-function _G.on_touch(x, y)
+function on_touch(x, y)
 	dofile('screens/title.lua')
 end
+
+load_textures()
+draw()
+collectgarbage()
 

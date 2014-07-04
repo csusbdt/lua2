@@ -1,5 +1,3 @@
--- Screen design size is 800 by 450.
-
 local title
 local increment_button
 local exit_button
@@ -28,20 +26,21 @@ local function create_counter_button()
 	counter_button = create_button("Counter: " .. sf.n          ,  50, 200)
 end
 
-function on_render_targets_reset()
+function load_textures()
+	title             = create_title ("The Increment Counter Game", 120,  50)
+	increment_button  = create_button("Increment the counter"     ,  50, 260)
+	exit_button       = create_button("Exit"                      ,  50, 320)
+	create_counter_button()
+end
+
+function draw()
+	set_draw_color(225, 225, 225, 255)
+	render_clear()
 	title            :draw()
 	counter_button   :draw()
 	increment_button :draw()
 	exit_button      :draw()
 	render()
-end
-
-function on_device_reset()
-	title             = create_title ("The Increment Counter Game", 120,  50)
-	increment_button  = create_button("Increment the counter"     ,  50, 260)
-	exit_button       = create_button("Exit"                      ,  50, 320)
-	create_counter_button()
-	on_render_targets_reset()
 end
 
 function on_update()
@@ -52,12 +51,14 @@ function on_touch(x, y)
 		sounds.play('waves/menuSound1.wav')
 		sf.n = tonumber(sf.n) + 1
 		create_counter_button()
+		draw()
 	elseif exit_button:contains(x, y) then
 		dofile('screens/title.lua')
 	end
 end
 
-on_device_reset()
 music.set(nil)
+load_textures()
+draw()
 collectgarbage()
 

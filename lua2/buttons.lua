@@ -7,8 +7,6 @@ textures = require('lua2.textures')
 
 button_mt = {}
 
---buttons = {}
-
 button_mt.__index = button_mt;
 
 function button_mt.draw(self)
