@@ -1,12 +1,20 @@
--- Screen design size is 800 by 450.
+local bg
+local title
+local continue_button
+local restart_button
+local textures_button
+local buttons_button
+local fill_button
+local full_button
+local exit_button
 
-local function create_background()
-	return textures.image('bg/schoolFiller.jpg')
-end
+local x = 50
+local y = 100
+local dy = 40
 
 local function create_title(text, x, y)
-	local f = fonts.create("fonts/DroidSansMono.ttf", 32)
-	local t = f:text(text, {r=0, g=100, b=0})
+	local f = fonts.create('fonts/DroidSansMono.ttf', 32)
+	local t = f:text(text, { r = 0, g = 100, b = 0 })
 	return buttons.create_from_texture(t, x, y)
 end
 
@@ -16,23 +24,21 @@ local function create_button(text, x, y)
 	return buttons.create_from_texture(t, x, y)
 end
 
-local x = 50
-local y = 100
-local dy = 40
+function load_textures()
+	bg = textures.image('bg/schoolFiller.jpg')
+	title           = create_title ("Test Program for the Lua2 Library", 120,  50)
+	continue_button = create_button("Continue game"       , x, y); y = y + dy
+	restart_button  = create_button("Restart game"        , x, y); y = y + dy
+	textures_button = create_button("Textures demo"       , x, y); y = y + dy
+	buttons_button  = create_button("Buttons demo"        , x, y); y = y + dy
+	fill_button     = create_button("Fill"                , x, y); y = y + dy
+	full_button     = create_button("Toggle fullscreen"   , x, y); y = y + dy
+	exit_button     = create_button("Exit"                , x, y); y = y + dy
+end
 
-local bg              = create_background();
-local title           = create_title ("Test Program for the Lua2 Library", 120,  50)
-local continue_button = create_button("Continue game"       , x, y); y = y + dy
-local restart_button  = create_button("Restart game"        , x, y); y = y + dy
-local textures_button = create_button("Textures demo"       , x, y); y = y + dy
-local buttons_button  = create_button("Buttons demo"        , x, y); y = y + dy
-local fill_button     = create_button("Fill"                , x, y); y = y + dy
-local full_button     = create_button("Toggle fullscreen"   , x, y); y = y + dy
-local exit_button     = create_button("Exit"                , x, y); y = y + dy
-
-music.set('music/Overworld.wav')
-
-function on_update()
+function draw()
+	set_draw_color(25, 25, 25, 255)
+	render_clear()
 	bg              :draw()
 	title           :draw()
 	continue_button :draw()
@@ -42,6 +48,12 @@ function on_update()
 	fill_button     :draw()
 	full_button     :draw()
 	exit_button     :draw()
+	render()
+end
+
+music.set('music/Overworld.wav')
+
+function on_update()
 end
 
 function on_touch(x, y)
@@ -71,5 +83,7 @@ function on_touch(x, y)
 	end
 end
 
+load_textures()
+draw()
 collectgarbage()
 

@@ -50,8 +50,15 @@ local function text(font, text, color)
 	return o
 end
 
+-- If the device lost the graphics state (app going to background and then shutdown),
+-- then we need to discard texture userdata.
+local function discard_userdata()
+	for k in pairs(textures) do textures[k] = nil end
+end
+
 return {
 	image = image,
-	text  = text
+	text  = text,
+	discard_userdata
 }
 

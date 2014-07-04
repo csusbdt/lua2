@@ -1,5 +1,10 @@
 -- Screen design size is 800 by 450.
 
+local title
+local increment_button
+local exit_button
+local counter_button
+
 local function create_background()
 	return textures.image('bg/schoolFiller.jpg')
 end
@@ -19,24 +24,27 @@ end
 -- Initialize the counter if needed.
 if not sf.n then sf.n = 0 end
 
-local counter_button
-
 local function create_counter_button()
 	counter_button = create_button("Counter: " .. sf.n          ,  50, 200)
 end
 
-local title             = create_title ("The Increment Counter Game", 120,  50)
-local increment_button  = create_button("Increment the counter"     ,  50, 260)
-local exit_button       = create_button("Exit"                      ,  50, 320)
-create_counter_button()
-
-music.set(nil)
-
-function on_update()
+function on_render_targets_reset()
 	title            :draw()
 	counter_button   :draw()
 	increment_button :draw()
 	exit_button      :draw()
+	render()
+end
+
+function on_device_reset()
+	title             = create_title ("The Increment Counter Game", 120,  50)
+	increment_button  = create_button("Increment the counter"     ,  50, 260)
+	exit_button       = create_button("Exit"                      ,  50, 320)
+	create_counter_button()
+	on_render_targets_reset()
+end
+
+function on_update()
 end
 
 function on_touch(x, y)
@@ -49,5 +57,7 @@ function on_touch(x, y)
 	end
 end
 
+on_device_reset()
+music.set(nil)
 collectgarbage()
 

@@ -13,38 +13,59 @@ music    = require('lua2.music')
 sounds   = require('lua2.sounds')
 sf       = require('lua2.savefile')
 
-app_black = { r =   0, g =   0, b =   0 }
-app_white = { r = 255, g = 255, b = 255 }
+black = { r =   0, g =   0, b =   0 }
+white = { r = 255, g = 255, b = 255 }
+dark  = { r =  40, g =  40, b =  40 }
+light = { r = 205, g = 205, b = 205 }
+
+-- Note: Subsequent code should define global functions draw and load_textures.
+
+function on_render_targets_reset()
+	if draw then draw() end
+end
+
+function on_device_reset()
+	textures.discard_userdata()
+	if load_textures then load_textures() end
+	if draw then draw() end
+end
+
+function on_window_size_changed()
+	on_render_targets_reset()
+end
 
 dofile('screens/title.lua')
 
 --[[
                     OVERVIEW
 
-The fonts module let you create font objects.
+The textures module lets you create textures in 2 ways:
+from a font or from an image file.
+
+The fonts module lets you create font objects.
 Font objects are used to create textures from strings.
+Use the text fucntion of font objects to create textures
+rather than creating from texture module directly.
 
-The textures module let you create textures in 2 ways:
-from a font and from an image file.
-Textures must be drawn to the screen in the global 
-on_update function in order to be visible.
-
-The buttons module is used to create clickable textures
-or invisible rectangles. It's possible and convenient to
-put wrap all textures in buttons even if they will not
-respond to mouse clicks or touch events.  The sample code
-illustrates this.
+The buttons module simplifies the use of texture objects
+for drawing and for use capturing click events. The
+It allows supports creation of invisible rectangles for
+the purpose of caputing touch events. After obtaining
+a texture object, wrap it in a button instance to
+simplify drawing and use as a button.
 
 The waves module lets you load wave samples into memory
 and then play once or as a loop.
 
 The music module simplifies use of the waves module for
 playout of music. Music is considered a block of audio 
-samples that are repeated in a loop.
+samples that are repeated in a loop. Use the music
+module instead of the waves module directly.
 
 The sounds module simplifies the use of the waves module
 for the playout of sound effects.  Sounds are blocks of
-audio samples that are played once without looping.
+audio samples that are played once without looping. Use
+the sounds module instead of the waves file directly.
 
 The savefile module automatically saves the keys and
 values of a table in writable persitant storage. 
