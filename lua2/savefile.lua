@@ -7,7 +7,7 @@ mt.__index = bt -- look up keys in the backing table
 local function read_backing_table()
 	local data = read_file('savefile')
 	if not data then return end
-	for k, v in string.gmatch(data, "([%-_%w]+)=([%/%-_%w]+)") do
+	for k, v in string.gmatch(data, "([%-_%w]+)=([%/%-_%w%.]+)") do
 		bt[k] = v
 	end
 end
