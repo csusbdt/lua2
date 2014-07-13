@@ -1,6 +1,7 @@
 _ENV = {
 	require = require,
-	setmetatable = setmetatable
+	setmetatable = setmetatable,
+	error = error
 }
 
 textures = require('lua2.textures')
@@ -26,6 +27,7 @@ local function create_from_rect(x, y, w, h)
 end
 
 local function create_from_texture(t, a1, a2, a3, a4, a5, a6, a7, a8)
+	if not t then error("create_from_texture called with nil texture", 2) end
 	local o = { t=t, a1=a1, a2=a2, a3=a3, a4=a4, a5=a5, a6=a6, a7=a7, a8=a8 }
 	if     a8 then o.x = a5; o.y = a6; o.w = a7; o.h = a8 
 	elseif a6 then o.x = a5; o.y = a6; o.w = t.w; o.h = t.h
