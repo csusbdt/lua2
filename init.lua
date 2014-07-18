@@ -34,6 +34,7 @@ function on_window_size_changed()
 	on_render_targets_reset()
 end
 
+dofile('test_sf.lua')
 dofile('screens/title.lua')
 
 --[[
